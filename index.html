@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Иван Иванов — фото и видео на нейросетях</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf5f7;
+    --card:#ffffff;
+    --ink:#1a1016;
+    --muted:#7c6672;
+    --line:#ecdce3;
+    --pink:#ff4d94;
+    --pink-deep:#c9296e;
+    --dark:#160b11;
+    --r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Manrope',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{width:min(1120px,92vw);margin:0 auto}
+  section{padding:96px 0}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:120px 0 80px;
+    overflow:hidden;
+    color:#fdf3f7;
+    background:var(--dark);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background:url('images/hero-bg.jpg') center/cover no-repeat;
+    opacity:.7;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(22,11,17,.5) 0%,rgba(22,11,17,.85) 100%);
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.4fr .8fr;
+    gap:56px;
+    align-items:center;
+  }
+  .kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:.9rem;color:#e6c3d3;
+    margin-bottom:26px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px var(--pink)}
+  h1{
+    font-size:clamp(2.6rem,6.2vw,4.6rem);
+    font-weight:800;
+    line-height:1.04;
+    letter-spacing:-.03em;
+    margin-bottom:24px;
+  }
+  .lead{
+    font-size:clamp(1.05rem,2vw,1.3rem);
+    color:#ecd6e0;
+    max-width:52ch;
+    margin-bottom:38px;
+  }
+  .cta{
+    display:inline-block;
+    background:var(--pink);
+    color:#fff;
+    font-weight:700;
+    font-size:1.05rem;
+    padding:17px 38px;
+    border-radius:999px;
+    text-decoration:none;
+    box-shadow:0 10px 34px rgba(255,77,148,.34);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(255,77,148,.5)}
+  .cta:focus-visible{outline:3px solid var(--pink-deep);outline-offset:3px}
+  .cta-note{display:block;margin-top:14px;font-size:.9rem;color:#d4aec0}
+
+  .portrait{
+    width:100%;
+    aspect-ratio:1;
+    border-radius:24px;
+    object-fit:cover;
+    box-shadow:0 30px 70px rgba(0,0,0,.5);
+  }
+
+  /* ---------- ЦИФРЫ ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    width:min(1120px,92vw);
+    margin:-52px auto 0;
+    position:relative;
+    z-index:5;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--r);
+    padding:30px 26px;
+    box-shadow:0 12px 30px rgba(38,10,24,.07);
+  }
+  .stat b{
+    display:block;
+    font-size:clamp(2rem,4vw,2.7rem);
+    font-weight:800;
+    letter-spacing:-.02em;
+    line-height:1;
+    margin-bottom:8px;
+    color:var(--pink-deep);
+  }
+  .stat span{color:var(--muted);font-size:.95rem}
+
+  /* ---------- ОБЩЕЕ ---------- */
+  h2{
+    font-size:clamp(1.9rem,4vw,2.9rem);
+    font-weight:800;
+    letter-spacing:-.02em;
+    line-height:1.15;
+    margin-bottom:14px;
+  }
+  .sub{color:var(--muted);max-width:56ch;margin-bottom:46px}
+
+  /* ---------- ГАЛЕРЕЯ ---------- */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+  }
+  .shot{
+    position:relative;
+    border-radius:var(--r);
+    overflow:hidden;
+    aspect-ratio:1;
+    background:#efe4e9;
+  }
+  .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .shot figcaption{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:34px 18px 16px;
+    font-size:.92rem;
+    color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(22,11,17,.88));
+  }
+
+  /* ---------- УСЛУГИ ---------- */
+  .services{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .price-row{
+    display:flex;
+    align-items:baseline;
+    gap:18px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .price-row:last-child{border-bottom:none}
+  .price-row h3{font-size:1.15rem;font-weight:700;white-space:nowrap}
+  .price-row p{color:var(--muted);font-size:.95rem}
+  .price-row b{font-size:1.15rem;font-weight:800;white-space:nowrap;color:var(--pink-deep)}
+  .fill{flex:1;border-bottom:1px dotted #d9c3ce;transform:translateY(-4px)}
+
+  /* ---------- ФИНАЛ ---------- */
+  .final{text-align:center}
+  .final .sub{margin:0 auto 34px}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:38px 0 46px;
+    color:var(--muted);
+    font-size:.92rem;
+    display:flex;
+    justify-content:space-between;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  footer a{color:var(--ink);text-decoration:none;margin-right:20px}
+  footer a:hover{color:var(--pink-deep)}
+
+  /* ---------- МОБИЛЬНАЯ ---------- */
+  .sticky{
+    display:none;
+    position:fixed;left:16px;right:16px;bottom:16px;z-index:50;
+    text-align:center;
+  }
+  @media(max-width:860px){
+    section{padding:64px 0}
+    .hero{padding:88px 0 74px}
+    .hero-grid{grid-template-columns:1fr;gap:34px}
+    .portrait{max-width:230px}
+    .stats{grid-template-columns:1fr;gap:12px;margin-top:-40px}
+    .gallery{grid-template-columns:repeat(2,1fr);gap:12px}
+    .price-row{flex-wrap:wrap;gap:6px}
+    .price-row p{flex-basis:100%;order:3}
+    .fill{display:none}
+    .price-row h3{flex:1}
+    body{padding-bottom:84px}
+    .sticky{display:block}
+    .sticky .cta{display:block;width:100%}
+    .hero .cta{display:none}
+    .cta-note{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="kicker"><span class="dot"></span> Работаю с нейросетями с 2023 года</p>
+        <h1>Фото и видео,<br>которых не было</h1>
+        <p class="lead">Меня зовут Иван Иванов. Генерирую и обрабатываю визуал для брендов, магазинов и блогеров — без съёмочной группы, студии и недельных согласований. Первые варианты обычно в тот же день.</p>
+        <a class="cta" href="#">Оставить заявку</a>
+        <span class="cta-note">Отвечу в течение пары часов</span>
+      </div>
+      <img class="portrait" src="images/ivan.jpg" alt="Иван Иванов">
+    </div>
+
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><b>1000+</b><span>готовых работ</span></div>
+  <div class="stat"><b>100+</b><span>довольных клиентов</span></div>
+  <div class="stat"><b>3 года</b><span>в генеративной графике</span></div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>Что получается на выходе</h2>
+    <p class="sub">Реклама, карточки товара, съёмка еды и интерьеров, обложки и кадры для роликов. Ниже — разные направления, чтобы было понятно, где я могу пригодиться.</p>
+
+    <div class="gallery">
+      <figure class="shot"><img src="images/work-1.jpg" alt="Ретушь портрета"><figcaption>Портрет и ретушь кожи</figcaption></figure>
+      <figure class="shot"><img src="images/work-2.jpg" alt="Предметная съёмка"><figcaption>Предметка для маркетплейсов</figcaption></figure>
+      <figure class="shot"><img src="images/work-3.jpg" alt="Съёмка еды"><figcaption>Еда для меню и доставки</figcaption></figure>
+      <figure class="shot"><img src="images/work-4.jpg" alt="Интерьер"><figcaption>Интерьеры и заведения</figcaption></figure>
+      <figure class="shot"><img src="images/work-5.jpg" alt="Креатив"><figcaption>Креатив под обложки</figcaption></figure>
+      <figure class="shot"><img src="images/work-6.jpg" alt="Кадр из ролика"><figcaption>Кадры для видео</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <p class="sub">Ниже базовые цены. Точную сумму назову после того, как пойму объём — это пара вопросов в переписке.</p>
+
+    <div class="price-row">
+      <h3>Генерация фото</h3>
+      <p>Съёмка, которой не было: товар, интерьер, еда, портрет</p>
+      <span class="fill"></span>
+      <b>300 ₽ / шт</b>
+    </div>
+    <div class="price-row">
+      <h3>Обработка фото</h3>
+      <p>Ретушь, замена фона, расширение кадра, чистка лишнего</p>
+      <span class="fill"></span>
+      <b>200 ₽ / шт</b>
+    </div>
+    <div class="price-row">
+      <h3>Генерация видео</h3>
+      <p>Ролик до 10 секунд — для рилсов, шортсов и рекламы</p>
+      <span class="fill"></span>
+      <b>1500 ₽</b>
+    </div>
+    <div class="price-row">
+      <h3>Монтаж ролика</h3>
+      <p>Сборка, титры, музыка, цвет — под нужную площадку</p>
+      <span class="fill"></span>
+      <b>от 3000 ₽</b>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Расскажите, что нужно снять</h2>
+    <p class="sub">Опишите задачу своими словами — подскажу, что реально сделать нейросетями, а что дешевле снять камерой. Считать смету не обязательно.</p>
+    <a class="cta" href="#">Оставить заявку</a>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div>
+    <a href="#">Telegram</a>
+    <a href="#">Instagram</a>
+    <a href="#">Почта</a>
+  </div>
+  <div>© 2026 Иван Иванов</div>
+</footer>
+
+<div class="sticky"><a class="cta" href="#">Оставить заявку</a></div>
+
+</body>
+</html>
